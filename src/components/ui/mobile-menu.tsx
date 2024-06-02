@@ -1,7 +1,7 @@
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { MenuIcon } from "lucide-react";
-import { NavItem } from "../core/nav-item";
+import { NavItem } from "../ui/nav-item";
 import { paths } from "@/paths";
 
 export function MobileMenu() {

@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { paths } from "@/paths";
-import { NavItem } from "../core/nav-item";
+import { NavItem } from "../ui/nav-item";
 
 export function SideMenu() {
   const navItems = paths;
