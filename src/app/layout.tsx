@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { SideMenu } from "@/components/dashboard/side-menu";
-import { MobileMenu } from "@/components/dashboard/mobile-menu";
+import { SideMenu } from "@/components/ui/side-menu";
+import { MobileMenu } from "@/components/ui/mobile-menu";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <SideMenu />
         <MobileMenu />
-        <main className="sm:ml-72 p-4">{children}</main>
+        <main className="sm:ml-72 p-4">
+          <div className="container mx-auto py-10">{children}</div>
+        </main>
       </body>
     </html>
   );
