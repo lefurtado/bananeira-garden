@@ -1,4 +1,4 @@
-import { Payment, columns } from "./columns";
+import { Plant, columns } from "./columns";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,14 +9,53 @@ import {
 } from "@/components/ui/breadcrumb";
 import { DataTable } from "@/components/ui/data-table";
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<Plant[]> {
   // Fetch data from your API here.
   return [
     {
       id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
+      image:
+        "https://www.jornalopcao.com.br/assets/2022/11/Comigo-ninguem-pode.webp",
+      code: "BG716251",
+      name: "Comigo, ninguém pode",
+      price: 5.99,
+      quantity: 15,
+    },
+    {
+      id: "728ed52f",
+      image:
+        "https://www.jornalopcao.com.br/assets/2022/11/Comigo-ninguem-pode.webp",
+      code: "BG716251",
+      name: "Comigo, pode sim",
+      price: 2.49,
+      quantity: 25,
+    },
+    {
+      id: "728ed52f",
+      image:
+        "https://www.jornalopcao.com.br/assets/2022/11/Comigo-ninguem-pode.webp",
+      code: "BG716251",
+      name: "Comigo, talvez possa",
+      price: 4.99,
+      quantity: 35,
+    },
+    {
+      id: "728ed52f",
+      image:
+        "https://www.jornalopcao.com.br/assets/2022/11/Comigo-ninguem-pode.webp",
+      code: "BG716251",
+      name: "Comigo, pode?",
+      price: 3.99,
+      quantity: 40,
+    },
+    {
+      id: "728ed52f",
+      image:
+        "https://www.jornalopcao.com.br/assets/2022/11/Comigo-ninguem-pode.webp",
+      code: "BG716251",
+      name: "Comigo, poderia",
+      price: 6.99,
+      quantity: 100,
     },
     // ...
   ];

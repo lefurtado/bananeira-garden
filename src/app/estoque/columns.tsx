@@ -1,28 +1,23 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ArrowUpDown } from "lucide-react";
+import { TrashIcon, InfoIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
+export type Plant = {
   id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
+  image: string;
+  name: string;
+  code: string;
+  price: number;
+  quantity: number;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Plant>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -46,61 +41,60 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: "Status",
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => {
+    accessorKey: "image",
+    header: "Imagem",
+    cell: ({ row }) => {
+      const image: string = row.getValue("image");
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <Avatar className="rounded-md h-20 w-20">
+          <AvatarImage src={image} />
+        </Avatar>
       );
     },
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "name",
+    header: "Nome",
+  },
+  {
+    accessorKey: "code",
+    header: "Código",
+  },
+  {
+    accessorKey: "price",
+    header: "Preço",
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-      const formatted = new Intl.NumberFormat("en-US", {
+      const price = parseFloat(row.getValue("price"));
+      const formatted = new Intl.NumberFormat("pt-BR", {
         style: "currency",
-        currency: "USD",
-      }).format(amount);
+        currency: "BRL",
+      }).format(price);
 
-      return <div className="text-right font-medium">{formatted}</div>;
+      return <div className="font-medium">{formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "quantity",
+    header: () => <div className="text-center">Quantidade</div>,
+    cell: ({ row }) => {
+      const quantity = parseFloat(row.getValue("quantity"));
+      const formatted = new Intl.NumberFormat("pt-BR").format(quantity);
+
+      return <div className="text-center font-bold">{formatted}</div>;
     },
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const payment = row.original;
-
+    cell: () => {
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex justify-end">
+          <Button variant="ghost" size="icon">
+            <InfoIcon className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="icon">
+            <TrashIcon className="h-4 w-4 text-red-600" />
+          </Button>
+        </div>
       );
     },
   },
