@@ -6,7 +6,7 @@ export function SideMenu() {
   const navItems = paths;
 
   return (
-    <nav className="hidden w-72 h-screen sm:block fixed bg-black p-3">
+    <nav className="hidden w-72 h-screen sm:block fixed bg-slate-950 p-3">
       <div className="flex justify-center items-center text-center gap-1 p-4">
         <Avatar>
           <AvatarImage className="bg-white p-1" src="/next.svg" />
