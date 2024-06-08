@@ -10,11 +10,12 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 // You can use a Zod schema here if you want.
 export type Plant = {
   id: string;
-  image: string;
-  name: string;
-  code: string;
-  price: number;
-  quantity: number;
+  image?: string;
+  name?: string;
+  code?: string;
+  local?: string;
+  price?: number;
+  quantity?: number;
 };
 
 export const columns: ColumnDef<Plant>[] = [
@@ -46,7 +47,7 @@ export const columns: ColumnDef<Plant>[] = [
     cell: ({ row }) => {
       const image: string = row.getValue("image");
       return (
-        <Avatar className="rounded-md h-20 w-20">
+        <Avatar className="rounded-md h-16 w-16">
           <AvatarImage src={image} />
         </Avatar>
       );
@@ -59,6 +60,10 @@ export const columns: ColumnDef<Plant>[] = [
   {
     accessorKey: "code",
     header: "Código",
+  },
+  {
+    accessorKey: "local",
+    header: "Local",
   },
   {
     accessorKey: "price",
